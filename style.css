@@ -3,8 +3,8 @@ body {
 }
 
 video {
-    width: 0px;
-    height: 0px;
+    width: 100px;
+    height: 300px;
 }
 
 table {
