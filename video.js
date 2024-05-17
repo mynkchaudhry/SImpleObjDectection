@@ -34,8 +34,8 @@ function camera() {
             }
             setTimeout(camera, 1000);
         });
-    }
-}
+    }}
+
 
 window.onload = function () {
     timerCallback();
