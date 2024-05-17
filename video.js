@@ -92,13 +92,32 @@ function ai() {
         console.log(results); // Will output bounding boxes of detected objects
         for (let index = 0; index < results.length; index++) {
             const element = results[index];
-            ctx1.font = "15px Arial";
+            ctx1.font = "20px Arial";
+            
+            // Set default color to red
             ctx1.fillStyle = "red";
-            ctx1.fillText(element.label + " - " + (element.confidence * 100).toFixed(2) + "%", element.x + 10, element.y + 15);
-            ctx1.beginPath();
             ctx1.strokeStyle = "red";
+
+            // Change color based on the label
+            if (element.label.toLowerCase() === "person") {
+                ctx1.fillStyle = "green";
+                ctx1.strokeStyle = "green";
+            } else if (element.label.toLowerCase() === "car" || 
+                       element.label.toLowerCase() === "truck" || 
+                       element.label.toLowerCase() === "bus" || 
+                       element.label.toLowerCase() === "motorbike") {
+                ctx1.fillStyle = "yellow";
+                ctx1.strokeStyle = "yellow";
+            }
+
+            // Draw the label
+            ctx1.fillText(element.label + " - " + (element.confidence * 100).toFixed(2) + "%", element.x + 10, element.y + 15);
+
+            // Draw the bounding box
+            ctx1.beginPath();
             ctx1.rect(element.x, element.y, element.width, element.height);
             ctx1.stroke();
+
             console.log(element.label);
         }
     });
